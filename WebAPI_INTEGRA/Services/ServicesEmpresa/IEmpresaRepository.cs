@@ -10,8 +10,8 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
     {
         IEnumerable<Empresa> GetAll();
         Empresa GetById(int id);
-        void AddEmpresa(Empresa pessoas);
-        void UpdateEmpresa(Empresa pessoas);
+        void AddEmpresa(Empresa empresa);
+        void UpdateEmpresa(Empresa empresa);
         void DeleteEmpresa(int id);
     }
 }

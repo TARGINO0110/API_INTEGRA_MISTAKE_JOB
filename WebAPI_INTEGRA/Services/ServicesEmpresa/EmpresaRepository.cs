@@ -36,7 +36,9 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
         public IDbConnection Connection
         {
             get { return new SqlConnection(_configuration.GetConnectionString("DefaultConnection")); }
+            //get { return new OracleConnection(_configuration.GetConnectionString("DefaultConnection")); } UTILIZAR EM BANCO ORACLE
         }
+        //OBS : PARA USO DOS BIND EM ORACLE TROCAR O [@ POR :] POR EXEMPO => sQuery = @ INSERT INTO TABELA (COLUNA1,COLUNA2) VALUES (:COLUNA1,:COLUNA2);
 
         public IEnumerable<Empresa> GetAll()
         {
