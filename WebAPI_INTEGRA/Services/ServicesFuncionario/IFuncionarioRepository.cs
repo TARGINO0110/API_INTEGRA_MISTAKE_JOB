@@ -10,8 +10,8 @@ namespace WebAPI_INTEGRA.Services.ServicesFuncionario
     {
         IEnumerable<Funcionario> GetAll();
         Funcionario GetById(int id);
-        void AddFuncionario(Funcionario pessoas);
-        void UpdateFuncionario(Funcionario pessoas);
+        void AddFuncionario(Funcionario funcionario);
+        void UpdateFuncionario(Funcionario funcionario);
         void DeleteFuncionario(int id);
     }
 }
