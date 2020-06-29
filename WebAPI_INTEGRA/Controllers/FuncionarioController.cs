@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI_INTEGRA.Models;
@@ -11,6 +12,7 @@ namespace WebAPI_INTEGRA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FuncionarioController : ControllerBase
     {
         private readonly IFuncionarioRepository _funcionarioRepository;
@@ -21,15 +23,15 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Funcionario> Get()
+        public async Task<IEnumerable<Funcionario>> Get()
         {
-            return _funcionarioRepository.GetAll();
+            return await _funcionarioRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-        public Funcionario Get(int id)
+        public async Task<Funcionario> Get(int id)
         {
-            return _funcionarioRepository.GetById(id);
+            return await _funcionarioRepository.GetById(id);
         }
 
         [HttpPost]

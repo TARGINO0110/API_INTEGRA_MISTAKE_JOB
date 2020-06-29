@@ -8,8 +8,8 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
 {
     public interface IEmpresaRepository
     {
-        IEnumerable<Empresa> GetAll();
-        Empresa GetById(int id);
+        Task<IEnumerable<Empresa>> GetAll();
+        Task<Empresa> GetById(int id);
         void AddEmpresa(Empresa empresa);
         void UpdateEmpresa(Empresa empresa);
         void DeleteEmpresa(int id);

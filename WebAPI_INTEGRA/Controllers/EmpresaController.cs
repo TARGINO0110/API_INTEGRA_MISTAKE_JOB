@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI_INTEGRA.Models;
@@ -11,6 +12,7 @@ namespace WebAPI_INTEGRA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EmpresaController : ControllerBase
     {
         private readonly IEmpresaRepository _empresaRepository;
@@ -21,15 +23,15 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Empresa> Get()
+        public async Task<IEnumerable<Empresa>> Get()
         {
-            return _empresaRepository.GetAll();
+            return await _empresaRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-        public Empresa Get(int id)
+        public async Task<Empresa> Get(int id)
         {
-            return _empresaRepository.GetById(id);
+            return await _empresaRepository.GetById(id);
         }
 
         [HttpPost]

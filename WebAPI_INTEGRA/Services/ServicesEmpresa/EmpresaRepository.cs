@@ -40,14 +40,15 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
         }
         //OBS : PARA USO DOS BIND EM ORACLE TROCAR O [@ POR :] POR EXEMPO => sQuery = @ INSERT INTO TABELA (COLUNA1,COLUNA2) VALUES (:COLUNA1,:COLUNA2);
 
-        public IEnumerable<Empresa> GetAll()
+        public async Task<IEnumerable<Empresa>> GetAll()
         {
             using IDbConnection dbConnection = Connection;
             try
             {
                 string sQuery = @"SELECT * FROM EMPRESA";
                 dbConnection.Open();
-                return dbConnection.Query<Empresa>(sQuery);
+                var listaSql = await dbConnection.QueryAsync<Empresa>(sQuery);
+                return (listaSql);
             }
             catch (Exception ex)
             {
@@ -59,14 +60,15 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
             }
         }
 
-        public Empresa GetById(int id)
+        public async Task<Empresa> GetById(int id)
         {
             using IDbConnection dbConnection = Connection;
             try
             {
                 string sQuery = @"SELECT * FROM EMPRESA WHERE EmpresaId = @Id";
                 dbConnection.Open();
-                return dbConnection.Query<Empresa>(sQuery, new { Id = id }).FirstOrDefault();
+                var listaIdSql = await dbConnection.QueryAsync<Empresa>(sQuery, new { Id = id });
+                return (listaIdSql).FirstOrDefault();
             }
             catch (Exception ex)
             {

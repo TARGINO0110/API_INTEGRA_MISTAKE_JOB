@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI_INTEGRA.Models;
@@ -11,6 +12,7 @@ namespace WebAPI_INTEGRA.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ServicosController : ControllerBase
     {
         private readonly IServicosRepository _servicosRepository;
@@ -21,15 +23,15 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Servicos> Get()
+        public async Task<IEnumerable<Servicos>> Get()
         {
-            return _servicosRepository.GetAll();
+            return await _servicosRepository.GetAll();
         }
 
         [HttpGet("{id}")]
-        public Servicos Get(int id)
+        public async Task<Servicos> Get(int id)
         {
-            return _servicosRepository.GetById(id);
+            return await _servicosRepository.GetById(id);
         }
 
         [HttpPost]
