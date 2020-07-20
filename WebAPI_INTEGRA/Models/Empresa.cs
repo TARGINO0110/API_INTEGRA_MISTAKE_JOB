@@ -15,7 +15,8 @@ namespace WebAPI_INTEGRA.Models
         public string NomeFantasia { get; set; }
         public string CNPJ { get; set; }
         public string TipoPJ { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)] 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataAbertura { get; set; }
     }
 }

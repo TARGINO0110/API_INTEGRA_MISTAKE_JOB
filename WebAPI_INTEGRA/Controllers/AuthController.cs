@@ -58,7 +58,7 @@ namespace WebAPI_INTEGRA.Controllers
         {
             bool validUser = false;
 
-            if (login.Username == "usuario" && login.Password == "master")
+            if (login.Username == "usuario" && login.Password == "masterdf5dukuylqhjyurttrs445#@Wef")
             {
                 validUser = true;
             }

@@ -17,6 +17,7 @@ namespace WebAPI_INTEGRA.Models
         [Column(TypeName = "decimal(10,2)")]
         public decimal Preco { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataServico { get; set; }
     }
 }

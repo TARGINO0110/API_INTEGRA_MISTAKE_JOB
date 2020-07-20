@@ -83,7 +83,7 @@ namespace WebAPI_INTEGRA
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidateLifetime = false,
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["JwtToken:Issuer"],
                     ValidAudience = Configuration["JwtToken:Issuer"],

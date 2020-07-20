@@ -23,36 +23,96 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Funcionario>> Get()
+        public async Task<ActionResult<IEnumerable<Funcionario>>> Get()
         {
-            return await _funcionarioRepository.GetAll();
+            try
+            {
+                var lista = await _funcionarioRepository.GetAll();
+                return Ok(lista);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<Funcionario> Get(int id)
+        public async Task<ActionResult<Funcionario>> Get(int id)
         {
-            return await _funcionarioRepository.GetById(id);
+            try
+            {
+                var listaId = await _funcionarioRepository.GetById(id);
+                return Ok(listaId);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
-        public void Post([FromBody] Funcionario funcionario)
+        public IActionResult Post([FromBody] Funcionario funcionario)
         {
-            if (ModelState.IsValid)
-                _funcionarioRepository.AddFuncionario(funcionario);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _funcionarioRepository.AddFuncionario(funcionario);
+                    return Ok(funcionario);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Funcionario funcionario)
+        public IActionResult Put(int id, [FromBody] Funcionario funcionario)
         {
-            funcionario.FuncionarioId = id;
-            if (ModelState.IsValid)
-                _funcionarioRepository.UpdateFuncionario(funcionario);
+            try
+            {
+                funcionario.FuncionarioId = id;
+                if (ModelState.IsValid)
+                {
+                    _funcionarioRepository.UpdateFuncionario(funcionario);
+                    return Ok(funcionario);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _funcionarioRepository.DeleteFuncionario(id);
+            try
+            {
+                if (ModelState.IsValid && id > 0)
+                {
+                    _funcionarioRepository.DeleteFuncionario(id);
+                    return Ok(id);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

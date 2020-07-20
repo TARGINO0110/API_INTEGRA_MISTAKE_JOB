@@ -23,36 +23,95 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Servicos>> Get()
+        public async Task<ActionResult<IEnumerable<Servicos>>> Get()
         {
-            return await _servicosRepository.GetAll();
+            try
+            {
+                var lista = await _servicosRepository.GetAll();
+                return Ok(lista);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<Servicos> Get(int id)
+        public async Task<ActionResult<Servicos>> Get(int id)
         {
-            return await _servicosRepository.GetById(id);
+            try
+            {
+                var listaId = await _servicosRepository.GetById(id);
+                return Ok(listaId);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
-        public void Post([FromBody] Servicos servicos)
+        public IActionResult Post([FromBody] Servicos servicos)
         {
-            if (ModelState.IsValid)
-                _servicosRepository.AddServicos(servicos);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _servicosRepository.AddServicos(servicos);
+                    return Ok(servicos);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Servicos servicos)
+        public IActionResult Put(int id, [FromBody] Servicos servicos)
         {
-            servicos.ServicosId = id;
-            if (ModelState.IsValid)
-                _servicosRepository.UpdateServicos(servicos);
+            try
+            {
+                servicos.ServicosId = id;
+                if (ModelState.IsValid)
+                {
+                    _servicosRepository.UpdateServicos(servicos);
+                    return Ok(servicos);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _servicosRepository.DeleteServicos(id);
+            try
+            {
+                if (ModelState.IsValid && id > 0)
+                {
+                    _servicosRepository.DeleteServicos(id);
+                    return Ok(id);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
