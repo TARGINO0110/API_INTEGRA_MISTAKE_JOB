@@ -14,17 +14,17 @@ namespace WebAPI_INTEGRA.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class EmpresaController : ControllerBase
+    public class EstabelecimentoController : ControllerBase
     {
         private readonly IEmpresaRepository _empresaRepository;
 
-        public EmpresaController(IEmpresaRepository empresaRepository)
+        public EstabelecimentoController(IEmpresaRepository empresaRepository)
         {
             _empresaRepository = empresaRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Empresa>>> Get()
+        public async Task<ActionResult<IEnumerable<Estabelecimento>>> Get()
         {
             try
             {
@@ -38,7 +38,7 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Empresa>> Get(int id)
+        public async Task<ActionResult<Estabelecimento>> Get(int id)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Empresa empresa)
+        public IActionResult Post([FromBody] Estabelecimento empresa)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Empresa empresa)
+        public IActionResult Put(int id, [FromBody] Estabelecimento empresa)
         {
             try
             {

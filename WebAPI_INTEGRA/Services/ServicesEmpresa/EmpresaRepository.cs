@@ -40,14 +40,14 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
         }
         //OBS : PARA USO DOS BIND EM ORACLE TROCAR O [@ POR :] POR EXEMPO => sQuery = @ INSERT INTO TABELA (COLUNA1,COLUNA2) VALUES (:COLUNA1,:COLUNA2);
 
-        public async Task<IEnumerable<Empresa>> GetAll()
+        public async Task<IEnumerable<Estabelecimento>> GetAll()
         {
             using IDbConnection dbConnection = Connection;
             try
             {
                 string sQuery = @"SELECT * FROM EMPRESA";
                 dbConnection.Open();
-                var listaSql = await dbConnection.QueryAsync<Empresa>(sQuery);
+                var listaSql = await dbConnection.QueryAsync<Estabelecimento>(sQuery);
                 return (listaSql);
             }
             catch (Exception ex)
@@ -60,14 +60,14 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
             }
         }
 
-        public async Task<Empresa> GetById(int id)
+        public async Task<Estabelecimento> GetById(int id)
         {
             using IDbConnection dbConnection = Connection;
             try
             {
                 string sQuery = @"SELECT * FROM EMPRESA WHERE EmpresaId = @Id";
                 dbConnection.Open();
-                var listaIdSql = await dbConnection.QueryAsync<Empresa>(sQuery, new { Id = id });
+                var listaIdSql = await dbConnection.QueryAsync<Estabelecimento>(sQuery, new { Id = id });
                 return (listaIdSql).FirstOrDefault();
             }
             catch (Exception ex)
@@ -80,7 +80,7 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
             }
         }
 
-        public void AddEmpresa(Empresa empresa)
+        public void AddEmpresa(Estabelecimento empresa)
         {
             using IDbConnection dbConnection = Connection;
             try
@@ -100,7 +100,7 @@ namespace WebAPI_INTEGRA.Services.ServicesEmpresa
             }
         }
 
-        public void UpdateEmpresa(Empresa empresa)
+        public void UpdateEmpresa(Estabelecimento empresa)
         {
             using IDbConnection dbConnection = Connection;
             try

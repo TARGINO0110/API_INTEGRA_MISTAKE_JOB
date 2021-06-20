@@ -13,17 +13,17 @@ namespace WebAPI_INTEGRA.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class FuncionarioController : ControllerBase
+    public class ProfissionalController : ControllerBase
     {
         private readonly IFuncionarioRepository _funcionarioRepository;
 
-        public FuncionarioController(IFuncionarioRepository funcionarioRepository)
+        public ProfissionalController(IFuncionarioRepository funcionarioRepository)
         {
             _funcionarioRepository = funcionarioRepository;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Funcionario>>> Get()
+        public async Task<ActionResult<IEnumerable<Profissional>>> Get()
         {
             try
             {
@@ -37,7 +37,7 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Funcionario>> Get(int id)
+        public async Task<ActionResult<Profissional>> Get(int id)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Funcionario funcionario)
+        public IActionResult Post([FromBody] Profissional funcionario)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace WebAPI_INTEGRA.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Funcionario funcionario)
+        public IActionResult Put(int id, [FromBody] Profissional funcionario)
         {
             try
             {

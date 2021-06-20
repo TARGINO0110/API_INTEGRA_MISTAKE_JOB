@@ -8,10 +8,10 @@ namespace WebAPI_INTEGRA.Services.ServicesFuncionario
 {
     public interface IFuncionarioRepository
     {
-        Task<IEnumerable<Funcionario>> GetAll();
-        Task<Funcionario> GetById(int id);
-        void AddFuncionario(Funcionario funcionario);
-        void UpdateFuncionario(Funcionario funcionario);
+        Task<IEnumerable<Profissional>> GetAll();
+        Task<Profissional> GetById(int id);
+        void AddFuncionario(Profissional funcionario);
+        void UpdateFuncionario(Profissional funcionario);
         void DeleteFuncionario(int id);
     }
 }

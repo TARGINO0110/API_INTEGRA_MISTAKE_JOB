@@ -40,14 +40,14 @@ namespace WebAPI_INTEGRA.Services.ServicesFuncionario
         }
         //OBS : PARA USO DOS BIND EM ORACLE TROCAR O [@ POR :] POR EXEMPO => sQuery = @ INSERT INTO TABELA (COLUNA1,COLUNA2) VALUES (:COLUNA1,:COLUNA2);
 
-        public async Task<IEnumerable<Funcionario>> GetAll()
+        public async Task<IEnumerable<Profissional>> GetAll()
         {
             using IDbConnection dbConnection = Connection;
             try
             {
                 string sQuery = @"SELECT * FROM FUNCIONARIO";
                 dbConnection.Open();
-                var listaSql = await dbConnection.QueryAsync<Funcionario>(sQuery);
+                var listaSql = await dbConnection.QueryAsync<Profissional>(sQuery);
                 return (listaSql);
             }
             catch (Exception ex)
@@ -60,14 +60,14 @@ namespace WebAPI_INTEGRA.Services.ServicesFuncionario
             }
         }
 
-        public async Task<Funcionario> GetById(int id)
+        public async Task<Profissional> GetById(int id)
         {
             using IDbConnection dbConnection = Connection;
             try
             {
                 string sQuery = @"SELECT * FROM FUNCIONARIO WHERE FuncionarioId = @Id";
                 dbConnection.Open();
-                var listaIdSql = await dbConnection.QueryAsync<Funcionario>(sQuery, new { Id = id });
+                var listaIdSql = await dbConnection.QueryAsync<Profissional>(sQuery, new { Id = id });
                 return (listaIdSql).FirstOrDefault();
             }
             catch (Exception ex)
@@ -80,7 +80,7 @@ namespace WebAPI_INTEGRA.Services.ServicesFuncionario
             }
         }
 
-        public void AddFuncionario(Funcionario funcionario)
+        public void AddFuncionario(Profissional funcionario)
         {
             using IDbConnection dbConnection = Connection;
             try
@@ -100,7 +100,7 @@ namespace WebAPI_INTEGRA.Services.ServicesFuncionario
             }
         }
 
-        public void UpdateFuncionario(Funcionario funcionario)
+        public void UpdateFuncionario(Profissional funcionario)
         {
             using IDbConnection dbConnection = Connection;
             try
