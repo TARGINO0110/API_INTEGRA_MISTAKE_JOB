@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebAPI_INTEGRA.Models
 {
-    public class CategoriaEmpresa
+    public class CategoriaPessoaJuridica
     {
+        public int IdCategoriaPJ { get; set; }
+        public string Categoria { get; set; }
     }
 }

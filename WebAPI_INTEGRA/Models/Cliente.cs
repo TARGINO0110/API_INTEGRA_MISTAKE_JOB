@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace WebAPI_INTEGRA.Models
 {
-    public class Cliente
+    public class Cliente : PessoaFisica
     {
-        public int Id { get; set; }
+        public int IdCliente { get; set; }
         public bool Ativo { get; set; }
+        public long PessoaFisicaId { get; set; }
     }
 }

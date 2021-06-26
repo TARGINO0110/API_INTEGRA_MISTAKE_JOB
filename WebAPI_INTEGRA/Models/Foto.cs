@@ -7,7 +7,7 @@ namespace WebAPI_INTEGRA.Models
 {
     public class Foto
     {
-        public long IdFOto { get; set; }
+        public long IdFoto { get; set; }
         public byte Imagem { get; set; }
         public string URL { get; set; }
         public long PessoaFisicaId { get; set; }

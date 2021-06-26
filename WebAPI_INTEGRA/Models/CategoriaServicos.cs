@@ -7,5 +7,7 @@ namespace WebAPI_INTEGRA.Models
 {
     public class CategoriaServicos
     {
+        public int IdCategoriaServicos { get; set; }
+        public string Categoria { get; set; }
     }
 }

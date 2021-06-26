@@ -7,25 +7,27 @@ using System.Threading.Tasks;
 
 namespace WebAPI_INTEGRA.Models
 {
-    public class Estabelecimento
+    public class Estabelecimento : PessoaJuridica
     {
         [Key]
         public long EstabelecimentoId { get; set; }
-       
-        public string TipoPJ { get; set; }
+     
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataAbertura { get; set; }
         public DateTime? DataFechamento { get; set; }
+        /// <summary>
+        /// Status do local [Aberto - AB, Fechado - F, Horário de almoço - HA]
+        /// </summary>
+        public string StatusEstabelecimento { get; set; }
         public bool Ativa { get; set; }
         public bool Suspenso { get; set; }
 
-
         // ****** Foreign Key Features *******
-        public int EnderecoId { get; set; }
-        public int CategoriaEmpresaId { get; set; }
-        public int DadosEmpresarial { get; set; }
-        public int PlanoSistema { get; set; }
+        public long? EnderecoId { get; set; }
+        
+        public int PlanoId { get; set; }
+        public long? DadosContatoId { get; set; }
 
     }
 }
